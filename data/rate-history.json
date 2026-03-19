@@ -1,0 +1,32 @@
+{
+  "region": "Harris County, TX",
+  "unit": "¢/kWh",
+  "lastUpdated": "2026-03-18T00:00:00.000Z",
+  "months": [
+    { "month": "2024-03", "label": "Mar 2024", "rate": 11.2 },
+    { "month": "2024-04", "label": "Apr 2024", "rate": 10.8 },
+    { "month": "2024-05", "label": "May 2024", "rate": 11.9 },
+    { "month": "2024-06", "label": "Jun 2024", "rate": 13.4 },
+    { "month": "2024-07", "label": "Jul 2024", "rate": 14.1 },
+    { "month": "2024-08", "label": "Aug 2024", "rate": 13.8 },
+    { "month": "2024-09", "label": "Sep 2024", "rate": 12.6 },
+    { "month": "2024-10", "label": "Oct 2024", "rate": 11.3 },
+    { "month": "2024-11", "label": "Nov 2024", "rate": 10.7 },
+    { "month": "2024-12", "label": "Dec 2024", "rate": 11.1 },
+    { "month": "2025-01", "label": "Jan 2025", "rate": 11.4 },
+    { "month": "2025-02", "label": "Feb 2025", "rate": 11.0 },
+    { "month": "2025-03", "label": "Mar 2025", "rate": 10.5 },
+    { "month": "2025-04", "label": "Apr 2025", "rate": 10.1 },
+    { "month": "2025-05", "label": "May 2025", "rate": 11.2 },
+    { "month": "2025-06", "label": "Jun 2025", "rate": 12.8 },
+    { "month": "2025-07", "label": "Jul 2025", "rate": 13.6 },
+    { "month": "2025-08", "label": "Aug 2025", "rate": 13.2 },
+    { "month": "2025-09", "label": "Sep 2025", "rate": 11.9 },
+    { "month": "2025-10", "label": "Oct 2025", "rate": 10.4 },
+    { "month": "2025-11", "label": "Nov 2025", "rate": 9.8 },
+    { "month": "2025-12", "label": "Dec 2025", "rate": 10.2 },
+    { "month": "2026-01", "label": "Jan 2026", "rate": 9.6 },
+    { "month": "2026-02", "label": "Feb 2026", "rate": 9.1 },
+    { "month": "2026-03", "label": "Mar 2026", "rate": 7.9, "isCurrent": true }
+  ]
+}

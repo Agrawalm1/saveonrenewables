@@ -1,0 +1,53 @@
+{
+  "lastUpdated": "2026-03-18T22:12:57.588Z",
+  "plans": [
+    {
+      "id": "chariot-greenvolt",
+      "provider": "Chariot Energy",
+      "plan": "GreenVolt Solar Buyback",
+      "description": "100% renewable, fixed buyback rate — no surprises on your credit.",
+      "url": "https://chariotenergy.com/solar-buyback",
+      "currentRate": 0.0709,
+      "previousRate": 0.07,
+      "rateType": "fixed",
+      "hotDeal": false,
+      "changePercent": 1.29
+    },
+    {
+      "id": "almika-solar",
+      "provider": "Almika Solar",
+      "plan": "Solar Buyback Plan",
+      "description": "Competitive buyback rates for Texas homeowners with flexible contract terms.",
+      "url": "https://almikasolar.net",
+      "currentRate": 0.0597,
+      "previousRate": 0.065,
+      "rateType": "variable",
+      "hotDeal": true,
+      "changePercent": -8.15
+    },
+    {
+      "id": "rhythm-sellback",
+      "provider": "Rhythm Energy",
+      "plan": "Solar Sellback",
+      "description": "Time-of-use pricing with strong afternoon peak buyback potential.",
+      "url": "https://gotrhythm.com/texas-solar-buyback",
+      "currentRate": 0.0544,
+      "previousRate": 0.063,
+      "rateType": "variable",
+      "hotDeal": true,
+      "changePercent": -13.65
+    },
+    {
+      "id": "green-mountain-solar",
+      "provider": "Green Mountain Energy",
+      "plan": "Solar Buyback Rewards",
+      "description": "Crediting excess solar energy at competitive variable rates.",
+      "url": "https://greenmountainenergy.com/solar",
+      "currentRate": 0.0473,
+      "previousRate": 0.055,
+      "rateType": "variable",
+      "hotDeal": true,
+      "changePercent": -14
+    }
+  ]
+}
