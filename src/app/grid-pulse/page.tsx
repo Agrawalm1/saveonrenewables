@@ -3,6 +3,7 @@ import path from "path";
 import GridPulse from "@/components/GridPulse";
 import RateHistoryChart from "@/components/RateHistoryChart";
 import Link from "next/link";
+import { fetchCurrentBestRate, getCurrentMonthKey } from "@/lib/rates";
 
 export const metadata = {
   title: "Grid Pulse · Save on Renewables",
@@ -16,8 +17,23 @@ function loadRateHistory() {
   return JSON.parse(readFileSync(filePath, "utf8"));
 }
 
-export default function GridPulsePage() {
+export default async function GridPulsePage() {
   const rateData = loadRateHistory();
+
+  // Fetch current month's best rate live from PowerToChoose
+  const liveRate = await fetchCurrentBestRate("77001");
+  const { month, label } = getCurrentMonthKey();
+
+  // Fallback: use the last historical rate if API fails
+  const currentRate = liveRate ?? rateData.months[rateData.months.length - 1].rate;
+
+  // Append current month as the live data point (keep last 24 months total)
+  const allMonths = [
+    ...rateData.months.slice(-23),
+    { month, label, rate: currentRate, isCurrent: true },
+  ];
+
+  const enrichedData = { ...rateData, months: allMonths };
 
   return (
     <main
@@ -40,13 +56,13 @@ export default function GridPulsePage() {
 
         {/* 24-month rate history chart */}
         <div className="mt-6">
-          <RateHistoryChart months={rateData.months} region={rateData.region} />
+          <RateHistoryChart months={enrichedData.months} region={enrichedData.region} />
         </div>
 
         {/* Chart explainer callout */}
         <div className="mt-4 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-sm text-emerald-800 leading-relaxed">
           <span className="font-semibold">Why the valley matters:</span> The current{" "}
-          <span className="font-bold">{rateData.months.find((m: { isCurrent?: boolean }) => m.isCurrent)?.rate ?? rateData.months[rateData.months.length - 1].rate}¢/kWh</span>{" "}
+          <span className="font-bold">{currentRate}¢/kWh</span>{" "}
           rate is near a 2-year low. Locking in solar now hedges against the summer peaks that historically hit 13–14¢.
         </div>
 
