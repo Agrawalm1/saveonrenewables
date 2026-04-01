@@ -2,15 +2,13 @@
 
 import { useState } from "react";
 
-// March 2026 Texas averages
-const RATE_PER_KWH = 0.14;
 const COST_PER_WATT = 2.16;
 const FEDERAL_TAX_CREDIT = 0.30;
 const PEAK_SUN_HOURS = 4.5;
 const KWH_PER_KW_PER_YEAR = PEAK_SUN_HOURS * 365;
 
-function calculate(monthlyBill: number) {
-  const annualKwh = (monthlyBill / RATE_PER_KWH) * 12;
+function calculate(monthlyBill: number, ratePerKwh: number) {
+  const annualKwh = (monthlyBill / ratePerKwh) * 12;
   const systemSizeKw = annualKwh / KWH_PER_KW_PER_YEAR;
   const grossCost = systemSizeKw * 1000 * COST_PER_WATT;
   const taxCredit = grossCost * FEDERAL_TAX_CREDIT;
@@ -136,7 +134,13 @@ function SuccessMessage() {
   );
 }
 
-export default function SolarCalculator() {
+export default function SolarCalculator({
+  ratePerKwh = 0.14,
+  rateLabel = "Current",
+}: {
+  ratePerKwh?: number;
+  rateLabel?: string;
+}) {
   const [monthlyBill, setMonthlyBill] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [results, setResults] = useState<Results | null>(null);
@@ -154,7 +158,7 @@ export default function SolarCalculator() {
       return;
     }
     setError("");
-    setResults(calculate(bill));
+    setResults(calculate(bill, ratePerKwh));
     setSubmitted(false);
   }
 
@@ -171,7 +175,7 @@ export default function SolarCalculator() {
     >
       {/* Header */}
       <h2 className="text-2xl font-bold text-gray-900 mb-1">Solar Savings Calculator</h2>
-      <p className="text-sm text-gray-400 mb-6">March 2026 · Texas · Includes 30% Federal Tax Credit</p>
+      <p className="text-sm text-gray-400 mb-6">{rateLabel} · Texas · Includes 30% Federal Tax Credit · Avg. market rate: {(ratePerKwh * 100).toFixed(1)}¢/kWh</p>
 
       {/* Inputs */}
       <div className="flex flex-col gap-4 mb-5">

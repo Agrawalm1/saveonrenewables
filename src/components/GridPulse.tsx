@@ -11,32 +11,29 @@ interface GridStatus {
   bgColor: string;
   dotColor: string;
   label: string;
+  source: "ercot" | "simulated";
 }
 
-function getStatus(hour: number): GridStatus {
-  // Simulate ERCOT load by time of day (Texas peak = afternoon)
-  if (hour >= 14 && hour <= 19) {
+function classifyLoad(gw: number): Omit<GridStatus, "gw" | "source"> {
+  if (gw >= 68) {
     return {
       level: "Critical",
-      gw: 74.2,
       color: "text-red-700",
       bgColor: "bg-red-50 border-red-200",
       dotColor: "bg-red-500",
       label: "Critical Load",
     };
-  } else if (hour >= 9 && hour <= 13) {
+  } else if (gw >= 55) {
     return {
       level: "High",
-      gw: 61.8,
       color: "text-orange-700",
       bgColor: "bg-orange-50 border-orange-200",
       dotColor: "bg-orange-400",
       label: "High Load",
     };
-  } else if (hour >= 20 && hour <= 22) {
+  } else if (gw >= 45) {
     return {
       level: "Moderate",
-      gw: 52.4,
       color: "text-yellow-700",
       bgColor: "bg-yellow-50 border-yellow-200",
       dotColor: "bg-yellow-400",
@@ -45,7 +42,6 @@ function getStatus(hour: number): GridStatus {
   } else {
     return {
       level: "Low",
-      gw: 38.9,
       color: "text-emerald-700",
       bgColor: "bg-emerald-50 border-emerald-200",
       dotColor: "bg-emerald-500",
@@ -59,16 +55,37 @@ export default function GridPulse({ compact = false }: { compact?: boolean }) {
   const [updated, setUpdated] = useState("");
 
   useEffect(() => {
-    const now = new Date();
-    setStatus(getStatus(now.getHours()));
-    setUpdated(now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }));
+    async function load() {
+      try {
+        const res = await fetch("/api/grid-status");
+        const json = await res.json();
+        const gw: number = json.gw;
+        const source: "ercot" | "simulated" = json.source ?? "simulated";
+        setStatus({ gw, source, ...classifyLoad(gw) });
+        setUpdated(
+          new Date(json.updatedAt).toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        );
+      } catch {
+        // silent fallback — leave status null, show nothing
+      }
+    }
+
+    load();
+    // Refresh every 5 minutes
+    const interval = setInterval(load, 5 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   if (!status) return null;
 
   if (compact) {
     return (
-      <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold ${status.bgColor} ${status.color}`}>
+      <div
+        className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold ${status.bgColor} ${status.color}`}
+      >
         <span className={`w-2 h-2 rounded-full animate-pulse ${status.dotColor}`} />
         ERCOT {status.label} · {status.gw} GW
       </div>
@@ -91,7 +108,9 @@ export default function GridPulse({ compact = false }: { compact?: boolean }) {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className={`w-2.5 h-2.5 rounded-full animate-pulse ${status.dotColor}`} />
-            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Live ERCOT Status</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
+              {status.source === "ercot" ? "Live ERCOT Data" : "ERCOT Status"}
+            </span>
           </div>
           <h3 className="text-lg font-bold text-gray-900">Texas Grid Load</h3>
         </div>
@@ -120,7 +139,9 @@ export default function GridPulse({ compact = false }: { compact?: boolean }) {
 
       {/* Caption */}
       <p className="text-sm text-gray-600 leading-relaxed">
-        <span className="font-semibold text-gray-800">Demand is surging due to new Texas Data Centers.</span>{" "}
+        <span className="font-semibold text-gray-800">
+          Demand is surging due to new Texas Data Centers.
+        </span>{" "}
         Protect your rates today — home solar locks you in against grid volatility.
       </p>
     </div>

@@ -1,5 +1,6 @@
 import { readFileSync } from "fs";
 import path from "path";
+import { fetchCurrentBestRate } from "@/lib/rates";
 
 export const metadata = {
   title: "Solar Buyback Plans · Save on Renewables",
@@ -112,7 +113,7 @@ function PlanTile({ plan }: { plan: BuybackPlan }) {
   );
 }
 
-function BestPwrTile() {
+function BestPwrTile({ rate }: { rate: string }) {
   return (
     <div
       className="rounded-3xl p-7 flex flex-col gap-5 ring-2 ring-emerald-400"
@@ -144,7 +145,7 @@ function BestPwrTile() {
 
       {/* Rate */}
       <div className="flex items-end gap-3">
-        <span className="text-5xl font-black text-emerald-600 leading-none">7.9¢</span>
+        <span className="text-5xl font-black text-emerald-600 leading-none">{rate}</span>
         <div className="flex flex-col gap-1 pb-1">
           <span className="text-sm text-gray-400">per kWh</span>
           <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
@@ -179,8 +180,12 @@ function BestPwrTile() {
   );
 }
 
-export default function BuybackPage() {
-  const data = loadBuybackData();
+export default async function BuybackPage() {
+  const [data, bestRateCents] = await Promise.all([
+    Promise.resolve(loadBuybackData()),
+    fetchCurrentBestRate(),
+  ]);
+  const bestRateLabel = bestRateCents != null ? `${bestRateCents.toFixed(1)}¢` : "7.6¢";
   const lastUpdated = new Date(data.lastUpdated).toLocaleString("en-US", {
     month: "short", day: "numeric", year: "numeric",
     hour: "2-digit", minute: "2-digit", timeZoneName: "short",
@@ -237,7 +242,7 @@ export default function BuybackPage() {
 
         {/* Best of BestPwr tile — always first */}
         <div className="mb-5" style={{ position: "relative", zIndex: 10, isolation: "isolate" }}>
-          <BestPwrTile />
+          <BestPwrTile rate={bestRateLabel} />
         </div>
 
         {/* Provider tiles */}

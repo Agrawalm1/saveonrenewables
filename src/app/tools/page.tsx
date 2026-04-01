@@ -1,11 +1,18 @@
 import SolarCalculator from "@/components/SolarCalculator";
+import { fetchMarketRate } from "@/lib/rates";
 
 export const metadata = {
   title: "Solar Advisor · Save on Renewables",
-  description: "Calculate your solar savings with 2026 Texas rates.",
+  description: "Calculate your solar savings with live Texas rates.",
 };
 
-export default function ToolsPage() {
+export default async function ToolsPage() {
+  const marketRateCents = await fetchMarketRate() ?? 14.0;
+  const ratePerKwh = marketRateCents / 100;
+
+  const now = new Date();
+  const label = now.toLocaleString("en-US", { month: "long", year: "numeric" });
+
   return (
     <main
       className="min-h-screen flex flex-col items-center px-6 py-20 text-center"
@@ -18,9 +25,9 @@ export default function ToolsPage() {
         Your Solar Advisor
       </h1>
       <p className="text-lg text-gray-500 max-w-xl mb-2">
-        Enter your monthly bill and ZIP code to see your personalized savings breakdown — built on March 2026 Texas data.
+        Enter your monthly bill and ZIP code to see your personalized savings breakdown — built on live Texas rate data.
       </p>
-      <SolarCalculator />
+      <SolarCalculator ratePerKwh={ratePerKwh} rateLabel={label} />
     </main>
   );
 }
