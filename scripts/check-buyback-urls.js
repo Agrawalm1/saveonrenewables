@@ -14,31 +14,36 @@ const http = require("http");
 
 const DATA_PATH = path.join(__dirname, "..", "data", "buyback-data.json");
 
-function fetchUrl(url) {
+function request(url, method) {
   return new Promise((resolve) => {
     const lib = url.startsWith("https") ? https : http;
     const req = lib.request(
       url,
       {
-        method: "HEAD",
+        method,
         timeout: 10000,
-        headers: {
-          "User-Agent": "SaveOnRenewables-BuybackChecker/1.0",
-        },
+        headers: { "User-Agent": "Mozilla/5.0 (compatible; SaveOnRenewables-Checker/1.0)" },
       },
       (res) => {
-        resolve({ url, status: res.statusCode, ok: res.statusCode < 400 });
+        // Consume response body to avoid socket hang
+        res.resume();
+        resolve({ status: res.statusCode, ok: res.statusCode < 400 });
       }
     );
-    req.on("error", (err) => {
-      resolve({ url, status: null, ok: false, error: err.message });
-    });
-    req.on("timeout", () => {
-      req.destroy();
-      resolve({ url, status: null, ok: false, error: "timeout" });
-    });
+    req.on("error", (err) => resolve({ status: null, ok: false, error: err.message }));
+    req.on("timeout", () => { req.destroy(); resolve({ status: null, ok: false, error: "timeout" }); });
     req.end();
   });
+}
+
+async function fetchUrl(url) {
+  // Try HEAD first (fast, no body download)
+  const head = await request(url, "HEAD");
+  // 405 = HEAD not allowed but page exists — retry with GET to confirm
+  if (!head.ok && head.status === 405) {
+    return request(url, "GET");
+  }
+  return head;
 }
 
 async function main() {
@@ -48,9 +53,10 @@ async function main() {
   console.log(`Checking ${plans.length} buyback plan URLs...\n`);
 
   const results = await Promise.all(
-    plans.map((plan) =>
-      fetchUrl(plan.url).then((result) => ({ ...result, plan: plan.plan, provider: plan.provider }))
-    )
+    plans.map(async (plan) => {
+      const result = await fetchUrl(plan.url);
+      return { ...result, plan: plan.plan, provider: plan.provider };
+    })
   );
 
   const failed = results.filter((r) => !r.ok);
