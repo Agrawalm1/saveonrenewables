@@ -1,0 +1,34 @@
+name: Update Rate History
+
+on:
+  schedule:
+    # Runs at 8am CT (2pm UTC) on the 2nd of every month
+    # (2nd not 1st — gives PowerToChoose time to reflect new month's data)
+    - cron: "0 14 2 * *"
+  workflow_dispatch: # Allow manual trigger from GitHub Actions tab
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch and append rate
+        run: node scripts/update-rate-history.js
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "Rate History Bot"
+          git config user.email "bot@saveonrenewables.com"
+          git add data/rate-history.json
+          git diff --staged --quiet && echo "No changes" || (
+            git commit -m "chore: auto-update rate history for $(date +'%b %Y')"
+            git push
+          )
