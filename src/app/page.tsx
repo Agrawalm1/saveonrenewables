@@ -1,5 +1,53 @@
 import Link from "next/link";
 import GridPulse from "@/components/GridPulse";
+import SolarAlertSignup from "@/components/SolarAlertSignup";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How much do solar panels cost in Texas in 2026?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The average solar installation in Texas costs $2.00–$2.50 per watt before incentives. For a typical 10 kW system, that's $20,000–$25,000 gross. Through solar leases and PPAs, you can access equivalent savings with no upfront cost.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is a solar buyback plan in Texas?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Texas is a deregulated energy market, so you choose your own electricity provider. Solar buyback plans credit your bill for excess energy your panels export to the grid. Choosing the right provider can mean thousands of dollars difference over your system's lifetime.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is solar worth it in Texas?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes — Texas has some of the best solar conditions in the US, with 4.5–5.5 peak sun hours per day depending on your city. With ERCOT grid demand rising due to data center expansion, locking in solar savings now protects you from future rate increases.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How long does it take for solar to pay for itself in Texas?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The typical payback period in Texas is 7–10 years, depending on your electricity bill, system size, and which buyback plan you choose. With rising ERCOT rates, payback periods are getting shorter each year.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What happened to the 30% federal solar tax credit?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The 30% residential solar tax credit expired at the end of December 2025 for direct purchases. However, through Solar Leases and Power Purchase Agreements (PPAs), the installer claims the credit and passes the savings to you through a lower monthly rate.",
+      },
+    },
+  ],
+};
 
 const sections = [
   {
@@ -34,6 +82,11 @@ const sections = [
 
 export default function Home() {
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
     <main
       className="min-h-screen px-6 py-20"
       style={{ background: "linear-gradient(160deg, #ecfdf5 0%, #f0f9ff 50%, #fafafa 100%)" }}
@@ -102,6 +155,9 @@ export default function Home() {
           </a>
         </div>
       </div>
+
+      <SolarAlertSignup />
     </main>
+    </>
   );
 }
