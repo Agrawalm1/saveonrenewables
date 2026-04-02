@@ -52,13 +52,26 @@ function ResultCard({ label, value, sub, highlight }: {
   );
 }
 
-function LeadForm({ onSuccess }: { onSuccess: () => void }) {
+// TODO: Replace with your Formspree form ID from formspree.io/dashboard
+const FORMSPREE_FORM_ID = "REPLACE_WITH_YOUR_FORM_ID";
+
+interface LeadContext {
+  monthlyBill: string;
+  zipCode: string;
+  systemSizeKw: string;
+  paybackYears: string;
+  savings25Year: string;
+  netCost: string;
+}
+
+function LeadForm({ onSuccess, context }: { onSuccess: () => void; context: LeadContext }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isHomeowner, setIsHomeowner] = useState<string>("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim()) { setError("Please enter your name."); return; }
     if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -67,7 +80,33 @@ function LeadForm({ onSuccess }: { onSuccess: () => void }) {
     }
     if (!isHomeowner) { setError("Please let us know if you own your home."); return; }
     setError("");
-    onSuccess();
+    setLoading(true);
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          homeowner: isHomeowner,
+          _subject: `New Solar Lead — Save on Renewables (${context.zipCode})`,
+          monthly_bill: `$${context.monthlyBill}`,
+          zip_code: context.zipCode,
+          system_size: `${context.systemSizeKw} kW`,
+          payback_period: `${context.paybackYears} years`,
+          net_cost: `$${context.netCost}`,
+          savings_25yr: `$${context.savings25Year}`,
+        }),
+      });
+      if (res.ok) {
+        onSuccess();
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Could not connect. Please try again.");
+    }
+    setLoading(false);
   }
 
   return (
@@ -113,9 +152,10 @@ function LeadForm({ onSuccess }: { onSuccess: () => void }) {
 
       <button
         type="submit"
-        className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 rounded-2xl shadow-md shadow-emerald-200 transition-colors"
+        disabled={loading}
+        className="w-full bg-emerald-500 hover:bg-emerald-600 disabled:bg-emerald-500/50 text-white font-semibold py-4 rounded-2xl shadow-md shadow-emerald-200 transition-colors"
       >
-        Send My Report →
+        {loading ? "Sending…" : "Send My Report →"}
       </button>
     </form>
   );
@@ -246,7 +286,21 @@ export default function SolarCalculator({
           </div>
 
           {/* Lead form or success */}
-          {submitted ? <SuccessMessage /> : <LeadForm onSuccess={() => setSubmitted(true)} />}
+          {submitted ? (
+            <SuccessMessage />
+          ) : (
+            <LeadForm
+              onSuccess={() => setSubmitted(true)}
+              context={{
+                monthlyBill,
+                zipCode,
+                systemSizeKw: results.systemSizeKw,
+                paybackYears: results.paybackYears,
+                savings25Year: results.savings25Year,
+                netCost: results.netCost,
+              }}
+            />
+          )}
 
           {/* BestPWR CTA */}
           <div className="mt-6 pt-6 border-t border-gray-100 text-center">
