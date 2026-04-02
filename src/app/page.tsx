@@ -1,6 +1,7 @@
 import Link from "next/link";
 import GridPulse from "@/components/GridPulse";
 import SolarAlertSignup from "@/components/SolarAlertSignup";
+import { cities } from "@/lib/cities";
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -103,12 +104,20 @@ export default function Home() {
           <p className="text-xl text-gray-500 leading-relaxed max-w-xl mx-auto mb-8">
             A high-trust, simple advisor for Texas solar shoppers. Real data. No pressure.
           </p>
-          <Link
-            href="/tools"
-            className="inline-block bg-emerald-500 hover:bg-emerald-600 text-white text-lg font-semibold px-10 py-4 rounded-2xl shadow-lg shadow-emerald-200 transition-colors"
-          >
-            Calculate My Solar Savings →
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/tools"
+              className="inline-block bg-emerald-500 hover:bg-emerald-600 text-white text-lg font-semibold px-10 py-4 rounded-2xl shadow-lg shadow-emerald-200 transition-colors"
+            >
+              Calculate My Solar Savings →
+            </Link>
+            <Link
+              href="/quiz"
+              className="inline-block border-2 border-emerald-200 text-emerald-700 hover:border-emerald-400 hover:bg-emerald-50 text-lg font-semibold px-8 py-4 rounded-2xl transition-colors"
+            >
+              Not sure? Take the quiz
+            </Link>
+          </div>
         </div>
 
         {/* Grid Pulse widget */}
@@ -141,6 +150,24 @@ export default function Home() {
               </span>
             </Link>
           ))}
+        </div>
+
+        {/* Browse by City */}
+        <div className="mb-12">
+          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 text-center mb-4">
+            Solar savings by Texas city
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {cities.map((city) => (
+              <Link
+                key={city.slug}
+                href={`/cities/${city.slug}`}
+                className="px-4 py-2 rounded-full border border-gray-200 bg-white/70 text-sm text-gray-600 hover:text-emerald-700 hover:border-emerald-300 hover:bg-emerald-50 transition-colors backdrop-blur-sm"
+              >
+                {city.name}
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* BestPWR CTA */}
