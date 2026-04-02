@@ -32,19 +32,18 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="font-semibold text-gray-900 mb-3">Partner</p>
+            <p className="font-semibold text-gray-900 mb-3">Company</p>
             <ul className="space-y-2 text-gray-500">
-              <li>
-                <a href="https://www.bestpwr.com" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-600">
-                  bestpwr.com
-                </a>
-              </li>
+              <li><Link href="/" className="hover:text-emerald-600">Home</Link></li>
+              <li><Link href="/about" className="hover:text-emerald-600">About</Link></li>
+              <li><Link href="/contact" className="hover:text-emerald-600">Contact</Link></li>
             </ul>
           </div>
         </div>
 
         <p className="text-center text-xs text-gray-400">
-          © 2026 SaveOnRenewables.com · For informational purposes only · Not financial advice
+          © {new Date().getFullYear()} SaveOnRenewables.com · For informational purposes only · Not financial advice ·{" "}
+          <Link href="/privacy" className="hover:text-emerald-600">Privacy Policy</Link>
         </p>
       </div>
     </footer>

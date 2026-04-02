@@ -53,7 +53,64 @@ export default async function CityPage({
   const fmt = (n: number) =>
     n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
+  const cityInsights: Record<string, string> = {
+    houston:
+      "Houston sits in CenterPoint Energy's territory — one of Texas's largest TDUs. With summer bills regularly topping $300 and coastal humidity keeping AC running year-round, solar payback in Houston is among the fastest in the state. Houston homeowners also benefit from proximity to a deep pool of solar installers driving competitive pricing.",
+    dallas:
+      "Dallas is served primarily by Oncor, the largest TDU in Texas. North Texas summers are brutal — July average highs near 96°F push electricity bills to record levels. Dallas homeowners going solar typically see payback in 8–9 years, with 25-year savings averaging $40,000–$55,000 at current rates.",
+    austin:
+      "Austin Energy serves much of the city with its own utility, but homeowners in surrounding areas (Cedar Park, Round Rock, Pflugerville) are in Oncor or Pedernales territory with full provider choice. Austin's tech culture and strong environmental awareness have made it one of Texas's fastest-growing solar markets.",
+    "san-antonio":
+      "San Antonio is largely served by CPS Energy, a city-owned utility — but outlying areas in Bexar County fall into deregulated territory. With 5.0 peak sun hours per day and summer temperatures regularly exceeding 100°F, San Antonio has some of the best solar economics in Texas.",
+    "fort-worth":
+      "Fort Worth is Oncor territory and benefits from the same deep pool of competitive electricity providers as Dallas. The city's rapid suburban expansion means newer rooftops — ideal for solar installations. Fort Worth homeowners typically target 9–10kW systems to cover HVAC-heavy summer loads.",
+    "corpus-christi":
+      "Corpus Christi enjoys the highest solar irradiance of any major Texas city, with 5.2 peak sun hours daily and a coastal climate that keeps temperatures moderated year-round. AEP Texas Central serves the area. Lower heating loads mean solar savings skew heavily toward cooling — the longest-running and highest-cost season.",
+    plano:
+      "Plano is deep in Oncor territory, part of the Dallas-Fort Worth metro. Its dense suburban residential neighborhoods with consistent roof exposure make it ideal for solar. Plano's median household income drives higher electricity usage — and higher potential savings. Average systems in Plano run 10–12kW.",
+    lubbock:
+      "Lubbock has the highest peak sun hours of any city in our coverage area at 5.5 hrs/day — a significant advantage that shortens payback periods by 1–2 years compared to the state average. Lubbock Power & Light serves most of the city. The flat West Texas landscape means minimal shading, maximizing year-round panel output.",
+  };
+
+  const cityInsight = cityInsights[slug] ?? null;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How much do solar panels cost in ${city.name}, Texas?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `A typical solar installation in ${city.name} costs around ${fmt(grossCost)} before incentives. After the 30% federal tax credit the net cost comes to approximately ${fmt(netCost)}, based on a $150/month electric bill at the current ${city.name} market rate.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How long is the solar payback period in ${city.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `At current electricity rates in ${city.name} (${rateCents.toFixed(1)}¢/kWh) and ${city.peakSunHours} peak sun hours per day, the estimated payback period is approximately ${paybackYears.toFixed(1)} years.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What is the electricity rate in ${city.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `The current median 12-month fixed electricity rate in ${city.name} is approximately ${rateCents.toFixed(1)}¢ per kWh, based on live data from PowerToChoose.`,
+        },
+      },
+    ],
+  };
+
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
     <main
       className="min-h-screen px-6 py-20"
       style={{ background: "linear-gradient(160deg, #ecfdf5 0%, #f0f9ff 50%, #fafafa 100%)" }}
@@ -187,6 +244,25 @@ export default async function CityPage({
           </div>
         </div>
 
+        {/* City insight */}
+        {cityInsight && (
+          <div
+            className="rounded-3xl p-7 mb-6"
+            style={{
+              background: "rgba(255,255,255,0.7)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              border: "1px solid rgba(255,255,255,0.75)",
+              boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
+            }}
+          >
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Why Solar Makes Sense in {city.name}
+            </h2>
+            <p className="text-sm text-gray-600 leading-relaxed">{cityInsight}</p>
+          </div>
+        )}
+
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <Link
@@ -215,5 +291,6 @@ export default async function CityPage({
         </p>
       </div>
     </main>
+    </>
   );
 }

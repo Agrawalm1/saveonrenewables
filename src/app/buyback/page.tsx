@@ -20,6 +20,7 @@ interface BuybackPlan {
   rateType: "fixed" | "variable";
   hotDeal: boolean;
   changePercent: number | null;
+  contractNote?: string;
 }
 
 interface BuybackData {
@@ -91,6 +92,13 @@ function PlanTile({ plan }: { plan: BuybackPlan }) {
 
       {/* Description */}
       <p className="text-sm text-gray-500 leading-relaxed flex-1">{plan.description}</p>
+
+      {/* Contract note */}
+      {plan.contractNote && (
+        <p className="text-xs text-gray-400 leading-relaxed border-t border-gray-100 pt-3">
+          📋 {plan.contractNote}
+        </p>
+      )}
 
       {/* CTA Button */}
       <a

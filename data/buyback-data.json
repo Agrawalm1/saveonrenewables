@@ -1,53 +1,84 @@
 {
-  "lastUpdated": "2026-03-18T22:12:57.588Z",
+  "lastUpdated": "2026-04-01T12:00:00.000Z",
+  "notes": "Buyback credit rates are set by each REP's plan terms. Fixed rates change at contract renewal; variable rates track ERCOT wholesale. This file is manually verified monthly. Plan availability confirmed April 2026.",
   "plans": [
+    {
+      "id": "almika-60-plus",
+      "provider": "Almika Energy",
+      "plan": "60 Energy Plus Buyback",
+      "description": "Highest fixed buyback rate in Texas at 10¢/kWh — but requires a 5-year contract. Best for homeowners confident in their solar production long-term.",
+      "url": "https://almikasolar.net",
+      "currentRate": 0.10,
+      "previousRate": 0.10,
+      "rateType": "fixed",
+      "hotDeal": true,
+      "changePercent": null,
+      "contractNote": "60-month contract required. Credits expire annually. $14.95/month base fee."
+    },
     {
       "id": "chariot-greenvolt",
       "provider": "Chariot Energy",
       "plan": "GreenVolt Solar Buyback",
-      "description": "100% renewable, fixed buyback rate — no surprises on your credit.",
-      "url": "https://chariotenergy.com/solar-buyback",
-      "currentRate": 0.0709,
+      "description": "7¢/kWh fixed rate — the most popular choice. Available in all 4 TDU territories. Credits never expire and roll over month to month.",
+      "url": "https://chariotenergy.com/solar-buyback/",
+      "currentRate": 0.07,
       "previousRate": 0.07,
       "rateType": "fixed",
       "hotDeal": false,
-      "changePercent": 1.29
+      "changePercent": null,
+      "contractNote": "12, 24, or 36-month contracts available. Widest TDU coverage."
     },
     {
-      "id": "almika-solar",
-      "provider": "Almika Solar",
-      "plan": "Solar Buyback Plan",
-      "description": "Competitive buyback rates for Texas homeowners with flexible contract terms.",
-      "url": "https://almikasolar.net",
-      "currentRate": 0.0597,
-      "previousRate": 0.065,
+      "id": "txu-solar-match",
+      "provider": "TXU Energy",
+      "plan": "Solar Buyback Match",
+      "description": "1:1 retail rate match — you earn the same rate per kWh exported as you pay per kWh consumed (energy charge only, excluding TDU fees). Credits roll monthly up to $1,000.",
+      "url": "https://www.txu.com/electricity-plans/home-solar-buyback",
+      "currentRate": 0.076,
+      "previousRate": 0.076,
+      "rateType": "fixed",
+      "hotDeal": false,
+      "changePercent": null,
+      "contractNote": "12 or 36-month contracts. 36-month plan in Oncor territory highly rated."
+    },
+    {
+      "id": "octopus-solar",
+      "provider": "Octopus Energy",
+      "plan": "Solar Buyback (all plans)",
+      "description": "Real-time ERCOT wholesale pricing every 15 minutes — earns the most during summer peak hours (2–7pm). No cap on credits, no expiration. Cash out when balance exceeds $50.",
+      "url": "https://octopusenergy.com/solar",
+      "currentRate": 0.065,
+      "previousRate": 0.058,
       "rateType": "variable",
       "hotDeal": true,
-      "changePercent": -8.15
+      "changePercent": 12.1,
+      "contractNote": "Bundled with all standard Octopus plans. Requires TDSP permission-to-operate form."
     },
     {
-      "id": "rhythm-sellback",
+      "id": "rhythm-powershift",
       "provider": "Rhythm Energy",
-      "plan": "Solar Sellback",
-      "description": "Time-of-use pricing with strong afternoon peak buyback potential.",
-      "url": "https://gotrhythm.com/texas-solar-buyback",
-      "currentRate": 0.0544,
+      "plan": "PowerShift Solar Buyback 12",
+      "description": "Time-of-use variable rate — earns more when exporting during high-demand hours. Best for homeowners who can shift loads off-peak. Credits roll monthly.",
+      "url": "https://www.gotrhythm.com/texas-solar-buyback",
+      "currentRate": 0.054,
       "previousRate": 0.063,
       "rateType": "variable",
-      "hotDeal": true,
-      "changePercent": -13.65
+      "hotDeal": false,
+      "changePercent": -14.3,
+      "contractNote": "12-month contract. $19.95/month base fee. System must be under 20kW."
     },
     {
-      "id": "green-mountain-solar",
+      "id": "green-mountain-rewards",
       "provider": "Green Mountain Energy",
-      "plan": "Solar Buyback Rewards",
-      "description": "Crediting excess solar energy at competitive variable rates.",
-      "url": "https://greenmountainenergy.com/solar",
-      "currentRate": 0.0473,
+      "plan": "Renewable Rewards Buyback",
+      "description": "Three tiers: Essentials (credits capped at your usage), Solar Credit (unlimited fixed credits), or Solar Max (real-time ERCOT wholesale). All plans use 100% renewable backup.",
+      "url": "https://www.greenmountainenergy.com/en/home-energy-solutions/renewable-rewards-buyback-program",
+      "currentRate": 0.047,
       "previousRate": 0.055,
       "rateType": "variable",
-      "hotDeal": true,
-      "changePercent": -14
+      "hotDeal": false,
+      "changePercent": -14.5,
+      "contractNote": "12/24-month or month-to-month. System must be under 50kW. Requires bidirectional meter."
     }
   ]
 }

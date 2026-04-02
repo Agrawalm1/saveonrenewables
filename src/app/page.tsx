@@ -96,10 +96,10 @@ export default function Home() {
         {/* Hero */}
         <div className="text-center mb-16">
           <span className="inline-block bg-emerald-100 text-emerald-700 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-6">
-            Texas Solar Advisor · 2026
+            Texas Solar Advisor
           </span>
           <h1 className="text-5xl font-bold text-gray-900 leading-tight mb-5">
-            Save on Renewables
+            Texas Solar Advisor — Is Solar Right for Your Home?
           </h1>
           <p className="text-xl text-gray-500 leading-relaxed max-w-xl mx-auto mb-8">
             A high-trust, simple advisor for Texas solar shoppers. Real data. No pressure.
@@ -123,6 +123,21 @@ export default function Home() {
         {/* Grid Pulse widget */}
         <div className="mb-12">
           <GridPulse />
+        </div>
+
+        {/* Social proof */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
+          {[
+            { value: "5.5hrs", label: "Peak sun hours in W. Texas" },
+            { value: "7–10yr", label: "Typical Texas payback" },
+            { value: "$200+", label: "Avg monthly bill savings" },
+            { value: "100%", label: "Deregulated — you choose your REP" },
+          ].map(({ value, label }) => (
+            <div key={label} className="rounded-2xl p-4 text-center" style={{ background: "rgba(255,255,255,0.6)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.7)" }}>
+              <p className="text-2xl font-black text-emerald-600 mb-1">{value}</p>
+              <p className="text-xs text-gray-500 leading-snug">{label}</p>
+            </div>
+          ))}
         </div>
 
         {/* Section cards */}

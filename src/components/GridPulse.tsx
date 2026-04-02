@@ -79,7 +79,13 @@ export default function GridPulse({ compact = false }: { compact?: boolean }) {
     return () => clearInterval(interval);
   }, []);
 
-  if (!status) return null;
+  if (!status) return (
+    <div className="rounded-3xl p-6 w-full animate-pulse" style={{ background: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,255,255,0.7)", boxShadow: "0 4px 30px rgba(0,0,0,0.06)" }}>
+      <div className="h-4 bg-gray-200 rounded w-1/3 mb-5" />
+      <div className="rounded-2xl bg-gray-100 p-5 mb-4 h-24" />
+      <div className="h-3 bg-gray-200 rounded w-3/4" />
+    </div>
+  );
 
   if (compact) {
     return (

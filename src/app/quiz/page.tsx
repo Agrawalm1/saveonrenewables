@@ -98,6 +98,9 @@ export default function QuizPage() {
   });
   const [billError, setBillError] = useState("");
   const [zipError, setZipError] = useState("");
+  const [leadEmail, setLeadEmail] = useState("");
+  const [leadSubmitted, setLeadSubmitted] = useState(false);
+  const [leadSubmitting, setLeadSubmitting] = useState(false);
 
   const totalSteps = 5;
 
@@ -364,6 +367,32 @@ export default function QuizPage() {
     );
   }
 
+  // ── Lead capture submit ───────────────────────────────────────────────
+
+  async function handleLeadSubmit(e: React.FormEvent, scoreLabel: string) {
+    e.preventDefault();
+    if (!leadEmail) return;
+    setLeadSubmitting(true);
+    try {
+      await fetch("https://formspree.io/f/mreoazqz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: "Quiz Lead — Save on Renewables",
+          email: leadEmail,
+          homeowner: answers.ownership ?? "",
+          monthly_bill: answers.monthlyBill,
+          zip: answers.zip,
+          shade: answers.shade ?? "",
+          score: scoreLabel,
+        }),
+      });
+      setLeadSubmitted(true);
+    } finally {
+      setLeadSubmitting(false);
+    }
+  }
+
   // ── Step 6 — Results ──────────────────────────────────────────────────
 
   function Results() {
@@ -444,6 +473,42 @@ export default function QuizPage() {
             Estimated system size based on your ${bill}/month bill at 14¢/kWh and 4.5 peak sun hours.
             Payback uses $2.16/W installed cost after 30% federal tax credit.
           </p>
+
+          {/* Email capture */}
+          {!leadSubmitted ? (
+            <form
+              onSubmit={(e) => handleLeadSubmit(e, scoreConfig.label)}
+              className="mb-6 rounded-2xl border border-emerald-100 bg-emerald-50 p-5"
+            >
+              <p className="text-sm font-semibold text-gray-800 mb-1">Get your free solar report</p>
+              <p className="text-xs text-gray-500 mb-4">
+                We&apos;ll email you a personalized Texas solar breakdown — no spam, no pressure.
+              </p>
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  value={leadEmail}
+                  onChange={(e) => setLeadEmail(e.target.value)}
+                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+                />
+                <button
+                  type="submit"
+                  disabled={leadSubmitting}
+                  className="bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-white font-bold text-sm px-4 py-3 rounded-xl transition-colors whitespace-nowrap"
+                  style={{ boxShadow: "0 4px 14px rgba(16,185,129,0.3)" }}
+                >
+                  {leadSubmitting ? "Sending…" : "Get My Solar Report →"}
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div className="mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-center">
+              <p className="text-sm font-semibold text-emerald-700">We&apos;ll be in touch!</p>
+              <p className="text-xs text-gray-500 mt-1">Check your inbox for your personalized solar report.</p>
+            </div>
+          )}
 
           {/* Primary CTA */}
           <Link
