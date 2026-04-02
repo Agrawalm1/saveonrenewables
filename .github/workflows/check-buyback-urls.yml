@@ -1,0 +1,33 @@
+name: Check Buyback Plan URLs
+
+on:
+  schedule:
+    # Every Monday at 9am CT (2pm UTC)
+    - cron: "0 14 * * 1"
+  workflow_dispatch:
+
+jobs:
+  check-urls:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check all buyback plan URLs
+        run: node scripts/check-buyback-urls.js
+
+      - name: Commit lastChecked update if URLs passed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet data/buyback-data.json || (
+            git add data/buyback-data.json &&
+            git commit -m "chore: buyback URL check passed $(date -u +%Y-%m-%d)" &&
+            git push
+          )
