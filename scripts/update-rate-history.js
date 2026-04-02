@@ -6,6 +6,7 @@
  * for Houston (77001) and appends it to data/rate-history.json.
  */
 
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require("fs");
 const path = require("path");
 

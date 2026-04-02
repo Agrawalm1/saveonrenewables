@@ -154,9 +154,9 @@ export default function PrivacyPage() {
               <li className="flex items-start gap-3">
                 <span className="mt-0.5 text-emerald-500 font-bold">•</span>
                 <span>
-                  To request deletion of your data, email us at{" "}
-                  <span className="text-gray-400 italic">[your email here]</span> with the
-                  subject line &quot;Data Deletion Request&quot;.
+                  To request deletion of your data,{" "}
+                  <a href="/contact" className="text-emerald-600 hover:underline">contact us</a>{" "}
+                  with the subject &quot;Data Deletion Request&quot;.
                 </span>
               </li>
             </ul>

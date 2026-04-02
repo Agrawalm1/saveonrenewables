@@ -1,6 +1,8 @@
 import SolarCalculator from "@/components/SolarCalculator";
 import { fetchMarketRate } from "@/lib/rates";
 
+export const revalidate = 86400; // revalidate once per day
+
 export const metadata = {
   title: "Solar Advisor · Save on Renewables",
   description: "Calculate your solar savings with live Texas rates.",

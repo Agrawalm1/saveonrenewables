@@ -21,5 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...cityPages,
     { url: `${base}/grid-pulse`,        lastModified: now, changeFrequency: "daily",   priority: 0.6 },
     { url: `${base}/solar-credits`,     lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/about`,             lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/contact`,           lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${base}/privacy`,           lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
   ];
 }

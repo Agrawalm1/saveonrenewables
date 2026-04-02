@@ -6,6 +6,7 @@
  * If all pass, updates `lastChecked` in buyback-data.json.
  */
 
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require("fs");
 const path = require("path");
 const https = require("https");

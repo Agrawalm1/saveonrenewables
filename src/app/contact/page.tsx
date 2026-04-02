@@ -1,11 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
-
-// Note: metadata export must be in a server component.
-// We export it here for Next.js to pick up at build time.
-// The page is a client component for form interactivity.
 
 export default function ContactPage() {
   const [name, setName] = useState("");

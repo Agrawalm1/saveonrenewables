@@ -215,7 +215,7 @@ export default function SolarCalculator({
     >
       {/* Header */}
       <h2 className="text-2xl font-bold text-gray-900 mb-1">Solar Savings Calculator</h2>
-      <p className="text-sm text-gray-400 mb-6">{rateLabel} · Texas · Includes 30% Federal Tax Credit · Avg. market rate: {(ratePerKwh * 100).toFixed(1)}¢/kWh</p>
+      <p className="text-sm text-gray-400 mb-6">{rateLabel} · Texas · Avg. market rate: {(ratePerKwh * 100).toFixed(1)}¢/kWh</p>
 
       {/* Inputs */}
       <div className="flex flex-col gap-4 mb-5">

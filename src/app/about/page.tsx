@@ -88,8 +88,7 @@ export default function AboutPage() {
         >
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact</h2>
           <p className="text-gray-600 leading-relaxed mb-4">
-            Questions or feedback? Reach us at{" "}
-            <span className="text-gray-400 italic">[your email here]</span>.
+            Questions or feedback? Use the contact form below — we respond within 1 business day.
           </p>
           <Link
             href="/contact"
