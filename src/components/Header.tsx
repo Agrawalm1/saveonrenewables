@@ -32,14 +32,14 @@ export default function Header() {
         boxShadow: "0 1px 20px rgba(0,0,0,0.04)",
       }}
     >
-      <div className="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-6 h-24 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo.png"
             alt="Save on Renewables"
-            style={{ height: "64px", width: "auto", display: "block" }}
+            style={{ height: "80px", width: "auto", display: "block" }}
           />
         </Link>
 
