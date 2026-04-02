@@ -8,6 +8,8 @@ const navLinks = [
   { label: "Grid Pulse", href: "/grid-pulse" },
   { label: "Buyback Plans", href: "/buyback" },
   { label: "Solar Credits", href: "/solar-credits" },
+  { label: "Cities", href: "/cities" },
+  { label: "Quiz", href: "/quiz" },
 ];
 
 export default function Header() {
