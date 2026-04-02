@@ -438,10 +438,10 @@ export default function QuizPage() {
       },
     }[score];
 
-    // Key numbers
-    const systemKw = (bill / 0.14 / 365 / 4.5) * 1000;
+    // Key numbers — uses current TX median rate ~9¢ and 4.5 peak sun hours
+    const systemKw = (bill / 0.09 / 365 / 4.5) * 1000;
     const grossCost = systemKw * 2.16;
-    const netCost = grossCost * 0.7;
+    const netCost = grossCost; // no credit assumed for direct purchase
     const payback = netCost / (bill * 12);
 
     return (

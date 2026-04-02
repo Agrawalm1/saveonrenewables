@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cities } from "@/lib/cities";
 
 export default function Footer() {
   return (
@@ -25,10 +26,13 @@ export default function Footer() {
           <div>
             <p className="font-semibold text-gray-900 mb-3">Cities</p>
             <ul className="space-y-2 text-gray-500">
-              <li><Link href="/cities/houston" className="hover:text-emerald-600">Houston</Link></li>
-              <li><Link href="/cities/dallas" className="hover:text-emerald-600">Dallas</Link></li>
-              <li><Link href="/cities/austin" className="hover:text-emerald-600">Austin</Link></li>
-              <li><Link href="/cities/san-antonio" className="hover:text-emerald-600">San Antonio</Link></li>
+              {cities.map((city) => (
+                <li key={city.slug}>
+                  <Link href={`/cities/${city.slug}`} className="hover:text-emerald-600">
+                    {city.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>

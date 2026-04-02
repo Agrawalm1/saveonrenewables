@@ -7,9 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "fetch-buyback": "node scripts/fetch-buyback.mjs",
-    "fetch-latest-rate": "npx ts-node --esm scripts/fetch-latest-rate.ts",
-    "cron": "node scripts/cron.mjs"
+    "update-rates": "node scripts/update-rate-history.js",
+    "check-buyback": "node scripts/check-buyback-urls.js"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -83,7 +83,7 @@ export default async function CityPage({
         name: `How much do solar panels cost in ${city.name}, Texas?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `A typical solar installation in ${city.name} costs around ${fmt(grossCost)} before incentives. After the 30% federal tax credit the net cost comes to approximately ${fmt(netCost)}, based on a $150/month electric bill at the current ${city.name} market rate.`,
+          text: `A typical solar installation in ${city.name} costs around ${fmt(grossCost)} before incentives. Through a Solar Lease or PPA, the effective net cost is approximately ${fmt(netCost)}, based on a $150/month electric bill at the current ${city.name} market rate.`,
         },
       },
       {
@@ -185,7 +185,7 @@ export default async function CityPage({
               <p className="text-2xl font-bold text-gray-900">{fmt(grossCost)}</p>
             </div>
             <div className="bg-emerald-50 rounded-2xl p-4">
-              <p className="text-xs text-emerald-600 uppercase tracking-wider mb-1">30% Federal Tax Credit</p>
+              <p className="text-xs text-emerald-600 uppercase tracking-wider mb-1">Lease/PPA Savings</p>
               <p className="text-2xl font-bold text-emerald-700">−{fmt(taxCredit)}</p>
             </div>
             <div className="bg-emerald-50 rounded-2xl p-4">
@@ -204,7 +204,8 @@ export default async function CityPage({
 
           <p className="text-xs text-gray-400 mt-4 leading-relaxed">
             Estimates use $2.16/W installed cost, {city.peakSunHours} peak sun hours/day, and today&apos;s live {city.name} market rate.
-            Actual results vary. Get a professional quote for precise numbers.
+            Lease/PPA savings reflect typical installer pass-through on federal incentives.{" "}
+            <Link href="/solar-credits" className="text-emerald-500 hover:underline">Learn how solar financing works →</Link>
           </p>
         </div>
 
