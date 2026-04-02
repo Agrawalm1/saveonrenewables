@@ -4,22 +4,6 @@ export default function Footer() {
   return (
     <footer className="border-t border-gray-100 bg-white mt-20">
       <div className="max-w-5xl mx-auto px-6 py-14">
-        {/* BestPWR Banner */}
-        <div className="rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 p-8 text-center mb-12 shadow-lg shadow-emerald-100">
-          <p className="text-white/80 text-sm font-medium mb-1 uppercase tracking-widest">Texas Energy Marketplace</p>
-          <h3 className="text-white text-2xl font-bold mb-4">
-            Ready to switch? Compare real-time Texas rates.
-          </h3>
-          <a
-            href="https://www.bestpwr.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-white text-emerald-700 font-bold px-8 py-3 rounded-xl hover:bg-emerald-50 transition-colors shadow-md"
-          >
-            Compare Real-Time Texas Rates at bestpwr.com →
-          </a>
-        </div>
-
         {/* Links */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10 text-sm">
           <div>

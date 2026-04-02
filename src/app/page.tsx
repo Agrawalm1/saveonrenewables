@@ -170,17 +170,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* BestPWR CTA */}
-        <div className="text-center">
-          <a
-            href="https://www.bestpwr.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-white hover:bg-gray-50 text-gray-800 font-semibold px-8 py-4 rounded-2xl border border-gray-200 transition-colors shadow-sm"
-          >
-            Compare Real-Time Texas Rates at bestpwr.com →
-          </a>
-        </div>
       </div>
 
       <SolarAlertSignup />
