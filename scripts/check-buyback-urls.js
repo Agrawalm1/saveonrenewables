@@ -39,8 +39,9 @@ function request(url, method) {
 async function fetchUrl(url) {
   // Try HEAD first (fast, no body download)
   const head = await request(url, "HEAD");
-  // 405 = HEAD not allowed but page exists — retry with GET to confirm
-  if (!head.ok && head.status === 405) {
+  // If HEAD fails for any reason (405, 403, timeout, blocked), retry with GET
+  // Some CDNs and WAFs block HEAD requests from CI/cloud IP ranges
+  if (!head.ok) {
     return request(url, "GET");
   }
   return head;
