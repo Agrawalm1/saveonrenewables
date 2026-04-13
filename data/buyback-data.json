@@ -8,8 +8,8 @@
       "plan": "60 Energy Plus Buyback",
       "description": "Highest fixed buyback rate in Texas at 10¢/kWh — but requires a 5-year contract. Best for homeowners confident in their solar production long-term.",
       "url": "https://almikasolar.net",
-      "currentRate": 0.10,
-      "previousRate": 0.10,
+      "currentRate": 0.1,
+      "previousRate": 0.1,
       "rateType": "fixed",
       "hotDeal": true,
       "changePercent": null,
@@ -80,5 +80,6 @@
       "changePercent": -14.5,
       "contractNote": "12/24-month or month-to-month. System must be under 50kW. Requires bidirectional meter."
     }
-  ]
+  ],
+  "lastChecked": "2026-04-13T17:41:03.594Z"
 }
