@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://saveonrenewables.com"),
   title: "Save on Renewables — Your Texas Solar Advisor",
-  description: "Find out how much you could save by switching to solar in Texas.",
+  description: "Free Texas solar savings calculator. Compare solar buyback plans, estimate your payback period, and find out if solar is right for your home — real data, no pressure.",
   openGraph: {
     type: "website",
     siteName: "Save on Renewables",

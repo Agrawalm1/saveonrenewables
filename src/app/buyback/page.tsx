@@ -193,7 +193,7 @@ export default async function BuybackPage() {
     Promise.resolve(loadBuybackData()),
     fetchCurrentBestRate(),
   ]);
-  const bestRateLabel = bestRateCents != null ? `${bestRateCents.toFixed(1)}¢` : "7.6¢";
+  const bestRateLabel = bestRateCents != null ? `${bestRateCents.toFixed(1)}¢` : "7.2¢";
   const lastUpdated = new Date(data.lastUpdated).toLocaleString("en-US", {
     month: "short", day: "numeric", year: "numeric",
     hour: "2-digit", minute: "2-digit", timeZoneName: "short",
@@ -215,7 +215,7 @@ export default async function BuybackPage() {
         {/* Header */}
         <div className="text-center mb-10">
           <span className="inline-block bg-emerald-100 text-emerald-700 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-6">
-            Houston · 2026 Plans
+            Texas · 2026 Plans
           </span>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Solar Buyback Plans</h1>
           <p className="text-lg text-gray-500 max-w-xl mx-auto mb-2">
