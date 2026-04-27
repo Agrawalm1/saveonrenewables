@@ -9,7 +9,6 @@ const primaryLinks = [
   { label: "Buyback Plans", href: "/buyback" },
   { label: "Grid Pulse", href: "/grid-pulse" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ];
 
 const allLinks = [
