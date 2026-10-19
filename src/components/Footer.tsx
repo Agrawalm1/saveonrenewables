@@ -20,7 +20,10 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-500">
               <li><Link href="/buyback" className="hover:text-emerald-600">Buyback Plans</Link></li>
               <li><Link href="/solar-credits" className="hover:text-emerald-600">Solar Credits</Link></li>
-              <li><Link href="/cities" className="hover:text-emerald-600">Browse Cities</Link></li>
+              <li><Link href="/guides" className="hover:text-emerald-600">Guides</Link></li>
+              <li><Link href="/houston-solar-buyback-plans" className="hover:text-emerald-600">Houston Solar</Link></li>
+              <li><Link href="/dallas-solar-buyback-plans" className="hover:text-emerald-600">Dallas Solar</Link></li>
+              <li><Link href="/austin-solar-buyback-plans" className="hover:text-emerald-600">Austin Solar</Link></li>
             </ul>
           </div>
           <div>

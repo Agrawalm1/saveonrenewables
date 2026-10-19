@@ -4,8 +4,15 @@ import { fetchMarketRate } from "@/lib/rates";
 export const revalidate = 86400; // revalidate once per day
 
 export const metadata = {
-  title: "Solar Advisor · Save on Renewables",
-  description: "Calculate your solar savings with live Texas rates.",
+  title: "Texas Solar Savings Calculator 2026 — Free Tool | SaveOnRenewables",
+  description:
+    "Free Texas solar savings calculator. Enter your monthly bill and ZIP to see your system size, payback period, and 25-year savings — built on live ERCOT rate data. No signup required.",
+  openGraph: {
+    title: "Texas Solar Savings Calculator 2026 — Free Tool",
+    description:
+      "Calculate your solar payback period and 25-year savings in seconds. Live Texas rate data, no pressure, no signup required.",
+    url: "https://saveonrenewables.com/tools",
+  },
 };
 
 export default async function ToolsPage() {

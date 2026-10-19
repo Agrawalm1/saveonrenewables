@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 const COST_PER_WATT = 2.16;
-const FEDERAL_TAX_CREDIT = 0.30;
 const PEAK_SUN_HOURS = 4.5;
 const KWH_PER_KW_PER_YEAR = PEAK_SUN_HOURS * 365;
 
@@ -11,8 +10,7 @@ function calculate(monthlyBill: number, ratePerKwh: number) {
   const annualKwh = (monthlyBill / ratePerKwh) * 12;
   const systemSizeKw = annualKwh / KWH_PER_KW_PER_YEAR;
   const grossCost = systemSizeKw * 1000 * COST_PER_WATT;
-  const taxCredit = grossCost * FEDERAL_TAX_CREDIT;
-  const netCost = grossCost - taxCredit;
+  const netCost = grossCost; // 30% federal credit expired Dec 2025 for direct purchases
   const annualSavings = monthlyBill * 12;
   const paybackYears = netCost / annualSavings;
   const savings25Year = annualSavings * 25 - netCost;
@@ -20,7 +18,6 @@ function calculate(monthlyBill: number, ratePerKwh: number) {
   return {
     systemSizeKw: systemSizeKw.toFixed(1),
     grossCost: Math.round(grossCost).toLocaleString(),
-    taxCredit: Math.round(taxCredit).toLocaleString(),
     netCost: Math.round(netCost).toLocaleString(),
     paybackYears: paybackYears.toFixed(1),
     savings25Year: Math.round(savings25Year).toLocaleString(),
@@ -264,17 +261,15 @@ export default function SolarCalculator({
 
           {/* Cost breakdown */}
           <div className="bg-white/60 rounded-2xl p-4 text-sm text-gray-700 shadow-sm mb-4">
-            <div className="flex justify-between mb-2">
-              <span className="text-gray-500">Gross System Cost</span>
-              <span className="font-semibold">${results.grossCost}</span>
+            <div className="flex justify-between font-bold text-gray-900 mb-2">
+              <span>Estimated System Cost</span>
+              <span>${results.grossCost}</span>
             </div>
-            <div className="flex justify-between mb-2 text-emerald-600">
-              <span>30% Federal Tax Credit</span>
-              <span className="font-semibold">− ${results.taxCredit}</span>
-            </div>
-            <div className="border-t border-gray-200 pt-2 flex justify-between font-bold text-gray-900">
-              <span>Net Cost to You</span>
-              <span>${results.netCost}</span>
+            <div className="border-t border-gray-100 pt-2">
+              <p className="text-xs text-amber-700 leading-relaxed">
+                The 30% federal solar tax credit expired Dec 2025 for direct purchases.{" "}
+                <a href="/solar-credits" className="underline font-medium">Leases &amp; PPAs can still unlock equivalent savings &rarr;</a>
+              </p>
             </div>
           </div>
 
@@ -306,7 +301,7 @@ export default function SolarCalculator({
           <div className="mt-6 pt-6 border-t border-gray-100 text-center">
             <p className="text-xs text-gray-400 mb-3">Want to compare live Texas energy rates?</p>
             <a
-              href="https://www.bestpwr.com"
+              href="https://bestpwr.com?utm_source=saveonrenewables&utm_medium=referral&utm_campaign=calculator_cta"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-2xl text-sm transition-colors"

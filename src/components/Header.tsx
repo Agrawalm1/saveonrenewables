@@ -7,6 +7,7 @@ import { useState } from "react";
 const primaryLinks = [
   { label: "Solar Advisor", href: "/tools" },
   { label: "Buyback Plans", href: "/buyback" },
+  { label: "Guides", href: "/guides" },
   { label: "Grid Pulse", href: "/grid-pulse" },
   { label: "About", href: "/about" },
 ];

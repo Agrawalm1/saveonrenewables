@@ -471,7 +471,7 @@ export default function QuizPage() {
 
           <p className="text-xs text-gray-400 leading-relaxed mb-6">
             Estimated system size based on your ${bill}/month bill at 14¢/kWh and 4.5 peak sun hours.
-            Payback uses $2.16/W installed cost after 30% federal tax credit.
+            Payback uses $2.16/W installed cost (direct purchase — no federal credit in 2026).
           </p>
 
           {/* Email capture */}
@@ -536,7 +536,7 @@ export default function QuizPage() {
             solar payback.
           </p>
           <a
-            href="https://www.bestpwr.com"
+            href="https://bestpwr.com?utm_source=saveonrenewables&utm_medium=referral&utm_campaign=quiz_results"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-emerald-700 font-bold bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-2xl py-3 px-6 transition-colors text-sm"

@@ -154,7 +154,7 @@ export default function SolarCreditsPage() {
               Solar Advisor →
             </Link>
             <a
-              href="https://www.bestpwr.com"
+              href="https://bestpwr.com?utm_source=saveonrenewables&utm_medium=referral&utm_campaign=solar_credits_cta"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-white hover:bg-gray-50 text-gray-800 font-semibold px-8 py-4 rounded-2xl border border-gray-200 transition-colors"

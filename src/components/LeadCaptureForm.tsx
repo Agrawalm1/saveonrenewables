@@ -21,18 +21,19 @@ export default function LeadCaptureForm() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/lead", {
+      const res = await fetch("https://formspree.io/f/mreoazqz", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
+          _subject: "Solar Lead — SaveOnRenewables (Buyback Page)",
           zip: form.zip.trim(),
-          monthlyBill: parseFloat(form.bill),
+          monthly_bill: `$${form.bill}`,
           email: form.email.trim(),
+          source: "buyback_lead_capture",
         }),
       });
-      const data = await res.json();
       if (!res.ok) {
-        setErrorMsg(data.error ?? "Something went wrong. Please try again.");
+        setErrorMsg("Something went wrong. Please try again.");
         setStatus("error");
       } else {
         setStatus("success");

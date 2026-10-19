@@ -39,13 +39,24 @@ export const metadata: Metadata = {
     description:
       "Compare Texas solar buyback plans, find the cheapest Houston electricity rates, and calculate your system payback — free tool, real data, no pressure.",
     url: "https://saveonrenewables.com",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Save on Renewables — Texas Solar Advisor",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Houston Solar Advisor — Best Buyback Plans & Cheapest Rates",
     description:
       "Free Houston solar savings calculator. Compare buyback rates, find the market low, and see your 25-year savings in seconds.",
+    images: ["/og-image.png"],
   },
+  // Google Search Console: replace the content value below with your GSC verification code
+  // verification: { google: "PASTE_YOUR_GSC_VERIFICATION_CODE_HERE" },
 };
 
 export default function RootLayout({
