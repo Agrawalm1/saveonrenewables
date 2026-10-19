@@ -55,30 +55,30 @@
       "contractNote": "Bundled with all standard Octopus plans. Requires TDSP permission-to-operate form."
     },
     {
-      "id": "rhythm-powershift",
-      "provider": "Rhythm Energy",
-      "plan": "PowerShift Solar Buyback 12",
-      "description": "Time-of-use variable rate — earns more when exporting during high-demand hours. Best for homeowners who can shift loads off-peak. Credits roll monthly.",
-      "url": "https://www.gotrhythm.com/texas-solar-buyback",
-      "currentRate": 0.054,
+      "id": "gexa-solar",
+      "provider": "Gexa Energy",
+      "plan": "Gexa Eco Save Solar",
+      "description": "Competitive variable buyback rate tied to ERCOT wholesale — one of the largest Texas REPs with strong CenterPoint coverage. No credit expiration, credits roll month to month.",
+      "url": "https://www.gexaenergy.com/solar",
+      "currentRate": 0.06,
       "previousRate": 0.063,
       "rateType": "variable",
       "hotDeal": false,
-      "changePercent": -14.3,
-      "contractNote": "12-month contract. $19.95/month base fee. System must be under 20kW."
+      "changePercent": -4.8,
+      "contractNote": "12-month contract. Available in all major TDU territories. System must be under 50kW."
     },
     {
-      "id": "green-mountain-rewards",
-      "provider": "Green Mountain Energy",
-      "plan": "Renewable Rewards Buyback",
-      "description": "Three tiers: Essentials (credits capped at your usage), Solar Credit (unlimited fixed credits), or Solar Max (real-time ERCOT wholesale). All plans use 100% renewable backup.",
-      "url": "https://www.greenmountainenergy.com/en/home-energy-solutions/renewable-rewards-buyback-program",
-      "currentRate": 0.047,
-      "previousRate": 0.055,
+      "id": "pulse-solar",
+      "provider": "Pulse Power",
+      "plan": "Pulse Solar Buyback",
+      "description": "Texas-owned and operated REP with a straightforward solar buyback program. Credits applied monthly with no cap. Good option for homeowners who want a local provider with simple billing.",
+      "url": "https://www.pulsepower.com/solar",
+      "currentRate": 0.05,
+      "previousRate": 0.05,
       "rateType": "variable",
       "hotDeal": false,
-      "changePercent": -14.5,
-      "contractNote": "12/24-month or month-to-month. System must be under 50kW. Requires bidirectional meter."
+      "changePercent": null,
+      "contractNote": "12 or 24-month contracts. No base fee. System must be under 25kW."
     }
   ],
   "lastChecked": "2026-10-12T21:55:09.767Z"

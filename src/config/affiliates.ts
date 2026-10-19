@@ -38,13 +38,13 @@ export const affiliates: Record<string, AffiliateConfig> = {
     affiliateUrl: null,
     trackingParams: { ...UTM_BASE, utm_content: "octopus_solar" },
   },
-  "rhythm-powershift": {
+  "gexa-solar": {
     affiliateUrl: null,
-    trackingParams: { ...UTM_BASE, utm_content: "rhythm_powershift" },
+    trackingParams: { ...UTM_BASE, utm_content: "gexa_solar" },
   },
-  "green-mountain-rewards": {
+  "pulse-solar": {
     affiliateUrl: null,
-    trackingParams: { ...UTM_BASE, utm_content: "green_mountain_rewards" },
+    trackingParams: { ...UTM_BASE, utm_content: "pulse_solar" },
   },
   bestpwr: {
     affiliateUrl:
