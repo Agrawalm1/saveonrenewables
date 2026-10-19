@@ -34,14 +34,14 @@ export default function Header() {
         boxShadow: "0 1px 20px rgba(0,0,0,0.04)",
       }}
     >
-      <div className="max-w-5xl mx-auto px-6 h-32 flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-6 h-16 md:h-32 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo.png"
             alt="Save on Renewables"
-            style={{ height: "110px", width: "auto", display: "block" }}
+            className="h-10 md:h-[110px] w-auto block"
           />
         </Link>
 
