@@ -17,21 +17,34 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://saveonrenewables.com"),
-  title: "Save on Renewables — Your Texas Solar Advisor",
-  description: "Free Texas solar savings calculator. Compare solar buyback plans, estimate your payback period, and find out if solar is right for your home — real data, no pressure.",
+  title: {
+    default: "Save on Renewables — Houston Solar Advisor & Buyback Plans",
+    template: "%s | SaveOnRenewables",
+  },
+  description:
+    "Houston's trusted solar advisor. Compare Texas solar buyback plans, find the cheapest electricity rates, and calculate your payback period — free, no pressure.",
+  keywords: [
+    "Houston solar buyback plans",
+    "best solar buyback Texas 2026",
+    "CenterPoint solar rate comparison",
+    "cheapest electricity rates Houston",
+    "Texas solar advisor",
+    "solar savings calculator Texas",
+    "ERCOT solar buyback",
+  ],
   openGraph: {
     type: "website",
     siteName: "Save on Renewables",
-    title: "Texas Solar Advisor — Is Solar Right for Your Home?",
+    title: "Houston Solar Advisor — Best Buyback Plans & Cheapest Rates",
     description:
-      "Free Texas solar savings calculator. Enter your bill and ZIP — see your system size, payback period, and 25-year savings in seconds.",
+      "Compare Texas solar buyback plans, find the cheapest Houston electricity rates, and calculate your system payback — free tool, real data, no pressure.",
     url: "https://saveonrenewables.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Texas Solar Advisor — Is Solar Right for Your Home?",
+    title: "Houston Solar Advisor — Best Buyback Plans & Cheapest Rates",
     description:
-      "Free Texas solar savings calculator for Texas homeowners. Real data. No pressure.",
+      "Free Houston solar savings calculator. Compare buyback rates, find the market low, and see your 25-year savings in seconds.",
   },
 };
 

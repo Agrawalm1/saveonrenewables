@@ -1,7 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import GridPulse from "@/components/GridPulse";
 import SolarAlertSignup from "@/components/SolarAlertSignup";
+import LeadCaptureForm from "@/components/LeadCaptureForm";
 import { cities } from "@/lib/cities";
+
+export const metadata: Metadata = {
+  title: "Houston Solar Advisor — Best Buyback Plans & Cheapest Rates | SaveOnRenewables",
+  description:
+    "Houston's free solar advisor. Compare 2026 Texas solar buyback plans, find the cheapest electricity rates in CenterPoint territory, and calculate your payback period in seconds.",
+  openGraph: {
+    title: "Houston Solar Advisor — Best Buyback Plans & Cheapest Rates",
+    description:
+      "Compare Texas solar buyback plans, find Houston's cheapest electricity rates, and see your 25-year solar savings — free, no pressure.",
+    url: "https://saveonrenewables.com",
+  },
+};
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -165,6 +179,11 @@ export default function Home() {
               </span>
             </Link>
           ))}
+        </div>
+
+        {/* Lead Capture */}
+        <div className="mb-12">
+          <LeadCaptureForm />
         </div>
 
         {/* Browse by City */}

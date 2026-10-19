@@ -45,8 +45,19 @@ export default function Footer() {
           </div>
         </div>
 
+        <div className="text-center mb-4">
+          <a
+            href="https://bestpwr.com?utm_source=saveonrenewables&utm_medium=referral&utm_campaign=footer_badge"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-emerald-600 transition-colors font-medium"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+            Powered by BESTPWR &mdash; Texas Energy Data &amp; Analytics
+          </a>
+        </div>
         <p className="text-center text-xs text-gray-400">
-          © {new Date().getFullYear()} SaveOnRenewables.com · For informational purposes only · Not financial advice ·{" "}
+          &copy; {new Date().getFullYear()} SaveOnRenewables.com &middot; For informational purposes only &middot; Not financial advice &middot;{" "}
           <Link href="/privacy" className="hover:text-emerald-600">Privacy Policy</Link>
         </p>
       </div>

@@ -1,10 +1,20 @@
 import { readFileSync } from "fs";
 import path from "path";
 import { fetchCurrentBestRate } from "@/lib/rates";
+import { resolveAffiliateUrl } from "@/config/affiliates";
+import LeadCaptureForm from "@/components/LeadCaptureForm";
 
 export const metadata = {
-  title: "Solar Buyback Plans · Save on Renewables",
-  description: "Compare the best Texas solar buyback plans in 2026 — Chariot, Almika, Rhythm, Green Mountain, and the BestPwr 12-month low.",
+  title: "Best Texas Solar Buyback Plans 2026 | SaveOnRenewables",
+  description:
+    "Compare the best Texas solar buyback plans in 2026 — Chariot, Almika, Octopus, TXU, Rhythm, Green Mountain, and the live BestPwr 12-month market low. Updated weekly.",
+  openGraph: {
+    title: "Best Texas Solar Buyback Plans 2026",
+    description:
+      "Side-by-side comparison of Texas solar buyback rates. See who pays the most per kWh for your excess solar energy — updated every Monday.",
+    url: "https://saveonrenewables.com/buyback",
+    type: "website" as const,
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -37,7 +47,7 @@ function fmt(rate: number) {
   return `${(rate * 100).toFixed(1)}¢`;
 }
 
-function PlanTile({ plan }: { plan: BuybackPlan }) {
+function PlanTile({ plan, actionUrl }: { plan: BuybackPlan; actionUrl: string }) {
   const isHot = plan.hotDeal || (plan.changePercent !== null && Math.abs(plan.changePercent) > 5);
   const changeUp = (plan.changePercent ?? 0) > 0;
 
@@ -102,7 +112,7 @@ function PlanTile({ plan }: { plan: BuybackPlan }) {
 
       {/* CTA Button */}
       <a
-        href={plan.url}
+        href={actionUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="block text-center text-white font-bold bg-emerald-500 hover:bg-emerald-600 rounded-2xl transition-colors"
@@ -169,7 +179,7 @@ function BestPwrTile({ rate }: { rate: string }) {
 
       {/* CTA */}
       <a
-        href="https://www.bestpwr.com"
+        href={resolveAffiliateUrl("bestpwr", "https://bestpwr.com")}
         target="_blank"
         rel="noopener noreferrer"
         className="block text-center text-white font-bold bg-emerald-500 hover:bg-emerald-600 rounded-2xl transition-colors text-base"
@@ -256,8 +266,17 @@ export default async function BuybackPage() {
         {/* Provider tiles */}
         <div className="flex flex-col gap-5 mb-8" style={{ isolation: "isolate" }}>
           {sorted.map((plan) => (
-            <PlanTile key={plan.id} plan={plan} />
+            <PlanTile
+              key={plan.id}
+              plan={plan}
+              actionUrl={resolveAffiliateUrl(plan.id, plan.url)}
+            />
           ))}
+        </div>
+
+        {/* Lead Capture */}
+        <div className="mb-8">
+          <LeadCaptureForm />
         </div>
 
         {/* Hot deal explainer */}

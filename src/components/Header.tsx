@@ -66,15 +66,20 @@ export default function Header() {
 
         {/* Right side */}
         <div className="flex items-center gap-2">
-          {/* CTA — desktop */}
-          <a
-            href="https://www.bestpwr.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center gap-1 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors shadow-sm shadow-emerald-200"
-          >
-            Compare Rates →
-          </a>
+          {/* CTA + BESTPWR badge — desktop */}
+          <div className="hidden md:flex flex-col items-end gap-0.5">
+            <a
+              href="https://bestpwr.com?utm_source=saveonrenewables&utm_medium=referral&utm_campaign=header_cta"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors shadow-sm shadow-emerald-200"
+            >
+              Compare Rates →
+            </a>
+            <span className="text-[10px] text-gray-400 font-medium tracking-tight">
+              Powered by BESTPWR &mdash; Texas Energy Data &amp; Analytics
+            </span>
+          </div>
 
           {/* Hamburger — mobile */}
           <button
@@ -116,14 +121,17 @@ export default function Header() {
             );
           })}
           <a
-            href="https://www.bestpwr.com"
+            href="https://bestpwr.com?utm_source=saveonrenewables&utm_medium=referral&utm_campaign=mobile_menu_cta"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
             className="mt-2 text-center bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold px-4 py-3 rounded-xl transition-colors"
           >
-            Compare Rates at bestpwr.com →
+            Compare Rates at BestPwr.com →
           </a>
+          <p className="text-center text-[10px] text-gray-400 mt-1">
+            Powered by BESTPWR &mdash; Texas Energy Data &amp; Analytics
+          </p>
         </div>
       )}
     </header>
