@@ -2,7 +2,7 @@
   "region": "Harris County, TX",
   "unit": "¢/kWh",
   "lastUpdated": "2026-10-18T00:00:00.000Z",
-  "notes": "Median 12-month fixed rate from PowerToChoose (ZIP 77001). May–Sep 2026 are seasonal estimates based on 2025 pattern scaled to 2026 baseline (~22% lower); PowerToChoose API returned no plans as of July 2026 — needs investigation.",
+  "notes": "Lowest 12-month fixed rate from PowerToChoose (ZIP 77002, CenterPoint Houston). May–Sep 2026 are seasonal estimates based on 2025 pattern scaled to 2026 baseline (~22% lower). API was broken for ZIP 77001 Jul–Oct 2026; switched to 77002 which returns full CenterPoint plan data. Oct 2026 confirmed live: 6.9c (AP Gas & Electric SimpleSaver 12).",
   "months": [
     { "month": "2024-07", "label": "Jul 2024", "rate": 14.1 },
     { "month": "2024-08", "label": "Aug 2024", "rate": 13.8 },

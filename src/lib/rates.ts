@@ -26,7 +26,7 @@ async function fetchPlans(zipCode: string): Promise<PtcPlan[]> {
 }
 
 /** Best (lowest) 12-month fixed rate in cents/kWh. Used for rate tiles. */
-export async function fetchCurrentBestRate(zipCode = "77001"): Promise<number | null> {
+export async function fetchCurrentBestRate(zipCode = "77002"): Promise<number | null> {
   try {
     const plans = await fetchPlans(zipCode);
     const fixed12 = plans.filter((p) => p.term_value === 12 && p.price_kwh1000 > 0);
@@ -43,7 +43,7 @@ export async function fetchCurrentBestRate(zipCode = "77001"): Promise<number | 
  * More representative of what the average homeowner actually pays —
  * used for solar savings calculations.
  */
-export async function fetchMarketRate(zipCode = "77001"): Promise<number | null> {
+export async function fetchMarketRate(zipCode = "77002"): Promise<number | null> {
   try {
     const plans = await fetchPlans(zipCode);
     const fixed12 = plans

@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-07-11T00:00:00.000Z",
-  "notes": "Buyback credit rates are set by each REP's plan terms. Fixed rates change at contract renewal; variable rates track ERCOT wholesale. This file is manually verified monthly. Plan availability confirmed July 2026.",
+  "lastUpdated": "2026-10-18T00:00:00.000Z",
+  "notes": "Buyback credit rates are set by each REP's plan terms. Fixed rates change at contract renewal; variable rates track ERCOT wholesale. This file is manually verified monthly. Plan availability confirmed Oct 2026. Variable rates (Octopus, Rhythm, Green Mountain) are estimates — verify on each provider's EFL before quoting.",
   "plans": [
     {
       "id": "almika-60-plus",
@@ -47,11 +47,11 @@
       "plan": "Solar Buyback (all plans)",
       "description": "Real-time ERCOT wholesale pricing every 15 minutes — earns the most during summer peak hours (2–7pm). No cap on credits, no expiration. Cash out when balance exceeds $50.",
       "url": "https://octopusenergy.com/solar",
-      "currentRate": 0.065,
-      "previousRate": 0.058,
+      "currentRate": 0.055,
+      "previousRate": 0.065,
       "rateType": "variable",
-      "hotDeal": true,
-      "changePercent": 12.1,
+      "hotDeal": false,
+      "changePercent": -15.4,
       "contractNote": "Bundled with all standard Octopus plans. Requires TDSP permission-to-operate form."
     },
     {
