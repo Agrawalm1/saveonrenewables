@@ -1,8 +1,8 @@
 {
   "region": "Harris County, TX",
   "unit": "¢/kWh",
-  "lastUpdated": "2026-07-11T00:00:00.000Z",
-  "notes": "Median 12-month fixed rate from PowerToChoose (ZIP 77001). May–Jul 2026 are seasonal estimates based on 2025 pattern; PowerToChoose API returned no plans as of July 2026 — needs investigation.",
+  "lastUpdated": "2026-10-18T00:00:00.000Z",
+  "notes": "Median 12-month fixed rate from PowerToChoose (ZIP 77001). May–Sep 2026 are seasonal estimates based on 2025 pattern scaled to 2026 baseline (~22% lower); PowerToChoose API returned no plans as of July 2026 — needs investigation.",
   "months": [
     { "month": "2024-07", "label": "Jul 2024", "rate": 14.1 },
     { "month": "2024-08", "label": "Aug 2024", "rate": 13.8 },
@@ -28,6 +28,8 @@
     { "month": "2026-04", "label": "Apr 2026", "rate": 7.2 },
     { "month": "2026-05", "label": "May 2026", "rate": 8.4 },
     { "month": "2026-06", "label": "Jun 2026", "rate": 9.8 },
-    { "month": "2026-07", "label": "Jul 2026", "rate": 10.6 }
+    { "month": "2026-07", "label": "Jul 2026", "rate": 10.6 },
+    { "month": "2026-08", "label": "Aug 2026", "rate": 10.3 },
+    { "month": "2026-09", "label": "Sep 2026", "rate": 9.2 }
   ]
 }
